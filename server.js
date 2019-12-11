@@ -4,6 +4,7 @@ const express = require("express");
 const session = require("express-session");
 var cors = require('cors')
 const bodyParser = require("body-parser");
+const contactsReoutes = require("./routes/contactRoutes");
 const userRoutes = require("./routes/userRoutes");
 logger = require("morgan");
 const passport = require("passport");
@@ -19,7 +20,7 @@ require("dotenv").config({ path: __dirname + "/.env" });
 //   });
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8000;
 
 app.use(cors());
 
@@ -47,15 +48,16 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get("/", function(req, res) {
+app.get("/", function (req, res) {
   res.status(200).send("Hello world");
 });
 
+app.use("/contacts", contactsReoutes);
 app.use("/user", userRoutes);
 
-app.listen(PORT, function() {
+app.listen(PORT, function () {
   console.log(
-    "%s App is running at http://localhost:%d in %s mode",chalk.green("✓"),PORT,
+    "%s App is running at http://localhost:%d in %s mode", chalk.green("✓"), PORT,
     app.get("env")
   );
   console.log("  Press CTRL-C to stop\n");

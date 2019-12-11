@@ -1,16 +1,4 @@
-# Learn4Fun
-
-## front-end
-### stack:
-- React
-- Redux
-
-### Setup
-- cd frontend
-- run $ yarn && yarn start
-
-
-## backend
+# Contact List
 
 - [Features](#features)
 - [Getting started](#getting-started)
@@ -24,10 +12,9 @@
 
 ## Features
 
-- Login/Register Authentication system
-- Add/Edit/Delete/index Question
-- Search Enigne
-- Roles/Permissions as for student/teacher and Admin Role
+- Login Authentication system
+- Add/getList/getRecentList Contact
+- Roles/Permissions as for Users Role
 
  # Getting started
 - install package.json (npm install) , this should install all packages required
@@ -38,53 +25,31 @@
 
 
 # API
-- `/signup post`
-    ```
-    body {
-        "Email":"nada@sys.com",
-        "Password":"123456",
-        "Username":"nada",
-        "FirstName":"Nada",
-        "LastName":"Nasser",
-        "DateOfBirth":"1234597878",
-        "Address":"Hopa Address__SR",
-        "Gender":1,
-        "PhoneNumber":"01111111",
-        "Type":1
-    }
-    ```
 
 - `/login post`
     ```
     body {
-        "Email":"admin@sys.com",
-	      "Password":"123456"
+        "Authorization":"ahbhetggfhhfhfdhfdhgfyygyhhghghdfdhfg",
+        "DeviceToken":"54f5df5d4f5d45f4",
+        "FingerPrint":"1223455678"
     }
     ```
 
-- `/addQuestion post`
+- `/addContact post`
     ```
     body {
-        "TypeID":1,
-        "LessonID":1,
-        "Description":"What is your name ?",
-        "DifficultyID":"2",
-        "Score" : 70,
-        "Answers":[{"AnswerBody":"Nada" , "IsValid" : 1}, {"AnswerBody":"Ahmed" , "IsValid" : 0 }, {"AnswerBody": "mohamed", "IsValid": 0}]
+        "FirstName":"Ahmed",
+        "LastName":"Ali",
+        "PhoneNumber":"232324343",
+        "Email":"ahmed@sys.com"
     }
     ```
 
-- `/updateQuestion post `
-    ```
-    body {
-        "QuestionID":2,
-        "Description":"How Are you ?",
-        "DifficultyID":"1",
-        "Score" : 50
-    }
-    ```
+- `/getList get `
 
-- `/deleteQuestion?QuestionID=5 get`
+
+
+- `/getRecentList get `
 
 ## Tests
 
@@ -98,6 +63,6 @@
 
 > PORT = 8000
 
-> databasestorage = 'SchoolSystem'
+> databasestorage = 'ContactListSystem'
 
 > JWT_SECRET ='top_secret'

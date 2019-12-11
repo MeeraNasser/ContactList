@@ -3,7 +3,7 @@ var connection = require('./DBConnection.js');
 var DataTypes = require('sequelize');
 const bcrypt = require('bcrypt')
 
-const UserModel = connection.define('User', {
+const ContactModel = connection.define('Contact', {
   ID: {
     type: DataTypes.BIGINT(20),
     allowNull: false,
@@ -16,10 +16,6 @@ const UserModel = connection.define('User', {
   },
   LastName: {
     type: DataTypes.STRING(45),
-    allowNull: false
-  },
-  Password: {
-    type: DataTypes.STRING(255),
     allowNull: false
   },
   PhoneNumber: {
@@ -41,29 +37,33 @@ const UserModel = connection.define('User', {
   FingerPrint: {
     type: DataTypes.STRING(255),
     allowNull: false
+  },
+  CreatedAt:{
+    type: DataTypes.DATE,
+    allowNull: false
   }
 }, {
-  tableName: 'User',
+  tableName: 'Contact',
   timestamps: false
 });
 
-UserModel.beforeCreate(async (user, options) => {
-  try {
-    const hash = await bcrypt.hash(user.Password, 10);
-    user.Password = hash;
-  } catch (error) {
-    throw error
-  }
-});
+// ContactModel.beforeCreate(async (Contact, options) => {
+//   try {
+//     const hash = await bcrypt.hash(Contact.Password, 10);
+//     Contact.Password = hash;
+//   } catch (error) {
+//     throw error
+//   }
+// });
 
-UserModel.prototype.isValidPassword = async function (Password) {
-  try {
-    const user = this;
-    const compare = await bcrypt.compare(Password, user.Password);
-    return compare;
-  } catch (error) {
-    throw error
-  }
-}
+// ContactModel.prototype.isValidPassword = async function (Password) {
+//   try {
+//     const Contact = this;
+//     const compare = await bcrypt.compare(Password, Contact.Password);
+//     return compare;
+//   } catch (error) {
+//     throw error
+//   }
+// }
 
-module.exports = UserModel;
+module.exports = ContactModel;
